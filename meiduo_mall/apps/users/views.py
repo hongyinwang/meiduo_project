@@ -67,3 +67,13 @@ class RegisterView(View):
         # 对于指明namespace的，reverse(命名空间namespace: 路由name)
         return redirect(reverse("contents:indexview"))
         # return http.HttpResponse("ok")
+
+#判断username是否重复
+class UsernameCountView(View):
+
+    def get(self,request,username):
+
+        #u02:用户名查询
+        count = User.objects.filter(username=username).count()
+        #u03:返回响应对象（JsonResponse可以把数据转化成json字符串的形式）
+        return http.JsonResponse({'count':count})
