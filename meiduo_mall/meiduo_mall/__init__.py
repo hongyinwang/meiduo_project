@@ -1,0 +1,4 @@
+#导入pymysql
+#卸载这里就是把mysql数据库作为我们目前的数据库,因为Django默认初始配置使用sqlite数据
+import pymysql
+pymysql.install_as_MySQLdb()
