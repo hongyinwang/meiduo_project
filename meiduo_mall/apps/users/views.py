@@ -1,5 +1,6 @@
 import re
 from django import http
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
@@ -59,5 +60,10 @@ class RegisterView(View):
         except Exception as e:
             logger.error(e)
             return render(request,'register.html',context={'register_errmsg':'注册失败'})
+        #状态保持
+        login(request,user)
+        #跳转首页
+        # 对于未指明namespace的，reverse(路由name)
+        # 对于指明namespace的，reverse(命名空间namespace: 路由name)
         return redirect(reverse("contents:indexview"))
         # return http.HttpResponse("ok")
