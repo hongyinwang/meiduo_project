@@ -65,8 +65,24 @@ var vm = new Vue({
                 this.error_name_message = '请输入5-20个字符的用户名';
                 this.error_name = true;
             }
-
-
+            //判断用户名是否重复
+            if(this.error_name == false){
+                let url = '/usernames/' + this.username;
+                axios.get('url').then(response=>{
+                    // ０表示没有重复
+                    // １表示重复了
+                    //data返回的json数据
+                    data = response.data
+                    if(data.count == 0){
+                        this.error_name = false;
+                    }else{
+                        this.error_name = true;
+                        this.error_name_message = '哥们,哥们,你的用户名好像和嫂子一样哎'
+                    }
+                    }).catch(error=> {
+                    console.log(error);
+                    });
+                }
         },
         // 检查密码
         check_password: function () {
