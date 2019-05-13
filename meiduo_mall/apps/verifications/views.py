@@ -11,6 +11,7 @@ class ImageCodeView(View):
     def get(self,request,uuid):
         #生成图片验证码内容和二进制图片
         from libs.captcha.captcha import captcha
+
         text,image = captcha.generate_captcha()
         #链接数据库
         from django_redis import get_redis_connection

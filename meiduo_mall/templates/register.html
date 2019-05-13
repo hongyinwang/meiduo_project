@@ -49,10 +49,10 @@
 						<input type="text" name="mobile" id="phone" @blur="check_mobile" v-model="mobile">
 						<span class="error_tip" v-show="error_mobile">[[error_mobile_message]]</span>
 					</li>
-					<li>
+                    <li>
                         <label>图形验证码:</label>
-                        <input type="text" name="pic_code" id="pic_code" class="msg_input">
-                        <img src="{{ static("images/pic_code.jpg") }}" alt="图形验证码" class="pic_code">
+                        <input type="text" name="image_code" id="pic_code" class="msg_input">
+                        <img :src="image_code_url" @click="generate_image_code" alt="图形验证码" class="pic_code">
                         <span class="error_tip">请填写图形验证码</span>
                     </li>
 					<li>
